@@ -1,0 +1,50 @@
+# brain-kit config. `python -m brain init` copies this to $BRAIN_ROOT/config.toml
+# (default ~/brain/config.toml). Anything you leave out falls back to these values.
+
+# How you appear in transcripts and summaries.
+owner = "Me"
+
+[sources]
+claude_code = true   # ~/.claude/projects/*/*.jsonl (+ subagents)
+codex = true         # ~/.codex/sessions, ~/.codex/archived_sessions
+exports = true       # Claude.ai / ChatGPT export zips in [exports] dirs
+wispr = true         # Wispr Flow desktop app data (macOS)
+notion = false       # via the claude.ai Notion connector; needs it connected in your claude.ai account
+memory = true        # ~/.claude/projects/*/memory/*.md
+inbox = true         # notes saved through the MCP `save` tool
+
+[exports]
+# Folders scanned for export zips. Zips are detected by content, not name.
+# {root} is your BRAIN_ROOT.
+dirs = ["~/Downloads", "{root}/exports"]
+
+[notion]
+skip = []            # page or database ids to leave out
+full_every_days = 7  # full re-walk interval; nightly runs only refetch what changed
+
+[models]
+line = "haiku"       # one summary per item
+rollup = "sonnet"    # days, weeks, months, project-months
+top = "opus"         # projects and the overview
+
+[workers]
+summarise = 8        # parallel `claude -p` processes
+rollup = 6
+
+[scrub]
+# Files holding bare secrets (one token per file) to redact wherever they appear.
+# Every .env file under your home folder is read automatically.
+extra_secret_files = []
+
+# Projects the summariser files items under: name = what belongs there.
+# The descriptions are what the model matches against, so be specific.
+# The last entry is the catch-all.
+[projects]
+"Work" = "My job: colleagues, meetings, documents, decisions"
+"Side projects" = "Things I build outside work"
+"Learning" = "Courses, languages, reading, curiosity questions"
+"Health" = "Health, fitness, food, sleep"
+"Money & admin" = "Personal finance, tax, legal and life admin"
+"Home" = "Home, DIY, buying and selling things"
+"AI tooling" = "Setting up AI tools, MCP servers, this brain, dev environment"
+"Personal" = "Anything else"
