@@ -28,7 +28,7 @@ Two things are needed to make it reliable:
 - `MCP_CONNECTION_NONBLOCKING=false`. Without it, the claude.ai connectors may still be loading when the first turn runs, and the model gets "No such tool available".
 - `MAX_MCP_OUTPUT_TOKENS` set high (it's 120000 here), so large results come back inline instead of as a file reference.
 
-Some connectors report `needs-auth` in headless runs even when they work interactively (Wispr Flow's did, which is why Wispr is read locally). Check the `mcp_servers` list in the stream's `init` event.
+Some connectors report `needs-auth` in headless runs even when they work interactively. Check the `mcp_servers` list in the stream's `init` event.
 
 **Every chat log format to one markdown format.**
 
@@ -56,7 +56,7 @@ To answer a question, the model works down from the top instead of loading the a
 2. **`zoom`** opens a tree node, or an item's section map.
 3. **`read`** pages through a raw file by line range.
 
-Every call returns a bounded amount of text, and any fact is about five hops from the overview however big the archive gets. On a 3,200-item archive (81 MB of markdown), a question like "what did I decide about X's pricing?" took 6 tool calls and 37 seconds.
+Every call returns a bounded amount of text, and any fact is about five hops from the overview however big the archive gets.
 
 ## Setup (macOS)
 
@@ -117,7 +117,7 @@ Claude Code deletes session logs after 30 days by default. Set `"cleanupPeriodDa
 
 ## Cost
 
-All model calls go through `claude -p`, so they count against your subscription's usage limits. There is no API bill. For scale, one archive of about 3,200 items took around 17 hours to summarise the first time. That came to about $145 at API prices, all of it from the subscription. With Notion switched on, each nightly run costs $6–7 at API prices; without it, the nightly cost depends only on how much changed that day.
+All model calls go through `claude -p`, so they count against your subscription's usage limits. There is no API bill. The first `summarise` is the heavy step: one Haiku call per item (more for long items), so a few thousand items takes hours and a noticeable share of your weekly usage. After that, nightly runs only summarise what changed. Notion adds a fixed nightly cost, because databases are re-listed every run.
 
 If a run hits the usage limit, it stops cleanly and carries on at the next scheduled slot. Lower `[workers]` to go easier on your limits.
 
