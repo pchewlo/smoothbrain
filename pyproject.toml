@@ -1,5 +1,5 @@
 [project]
-name = "brain-kit"
+name = "smoothbrain"
 version = "0.1.0"
 description = "A personal brain over your AI conversations, meetings and notes: one markdown archive, a summary tree, and a local MCP server."
 requires-python = ">=3.11"

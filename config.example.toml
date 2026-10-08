@@ -1,4 +1,4 @@
-# brain-kit config. `python -m brain init` copies this to $BRAIN_ROOT/config.toml
+# smoothbrain config. `python -m brain init` copies this to $BRAIN_ROOT/config.toml
 # (default ~/brain/config.toml). Anything you leave out falls back to these values.
 
 # How you appear in transcripts and summaries.

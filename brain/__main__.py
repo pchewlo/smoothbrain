@@ -82,13 +82,13 @@ PLIST = """<?xml version="1.0" encoding="UTF-8"?>
 
 
 def install_launchd(at: str = "02:30"):
-    label = "com.brain-kit.nightly"
+    label = "com.smoothbrain.nightly"
     h, m = (int(x) for x in at.split(":"))
     # The main slot, plus retries that exit at once after a successful run.
     hours = [h] + [x for x in (9, 13, 19) if x != h]
     slots = "".join(f"<dict><key>Hour</key><integer>{hh}</integer><key>Minute</key><integer>{m if hh == h else 0}</integer></dict>"
                     for hh in hours)
-    logs = HOME / "Library/Logs/brain-kit"
+    logs = HOME / "Library/Logs/smoothbrain"
     logs.mkdir(parents=True, exist_ok=True)
     plist = HOME / f"Library/LaunchAgents/{label}.plist"
     plist.write_text(PLIST.format(label=label, script=CODE / "scripts/nightly.sh", root=ROOT,

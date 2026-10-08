@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Local stdio MCP server over a brain-kit data folder ($BRAIN_ROOT, default ~/brain).
+// Local stdio MCP server over a smoothbrain data folder ($BRAIN_ROOT, default ~/brain).
 // Tools: overview, search, zoom, read, save. Read-only except save, which only
 // appends a markdown note to inbox/ (picked up by the next nightly run).
 

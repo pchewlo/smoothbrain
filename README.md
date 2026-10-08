@@ -1,4 +1,4 @@
-# brain-kit
+# smoothbrain
 
 A personal brain built from your AI conversations, meetings and notes. It turns Claude Code, Codex, Claude.ai, ChatGPT, Wispr Flow and Notion into one markdown archive and adds a summary tree on top. A local MCP server lets any MCP client look things up in it, in a few tool calls.
 
@@ -69,7 +69,7 @@ Needs:
 macOS ships Python 3.9. If `python3 --version` is older than 3.11, run the commands below with `uv run python` or a newer `python3.x` instead.
 
 ```sh
-git clone https://github.com/pchewlo/brain-kit && cd brain-kit
+git clone https://github.com/pchewlo/smoothbrain && cd smoothbrain
 (cd mcp && npm install)
 
 python3 -m brain init            # creates ~/brain (or $BRAIN_ROOT) and ~/brain/config.toml
@@ -91,7 +91,7 @@ claude mcp add --scope user brain -- "$PWD/mcp/start.sh"
 For the Claude desktop app, Cursor and others, add this to the app's MCP config:
 
 ```json
-{ "mcpServers": { "brain": { "command": "/path/to/brain-kit/mcp/start.sh", "args": [], "env": { "BRAIN_ROOT": "/Users/you/brain" } } } }
+{ "mcpServers": { "brain": { "command": "/path/to/smoothbrain/mcp/start.sh", "args": [], "env": { "BRAIN_ROOT": "/Users/you/brain" } } } }
 ```
 
 To back the brain up, make `~/brain` a git repo with a **private** remote. The nightly job then commits and pushes it after the secret check passes.
@@ -139,7 +139,7 @@ Logs contain whatever you pasted into them. Before any file is written, [`brain/
 python -m brain init | ingest [source…] | notion-crawl [full] | summarise [N] | tree | check | run | install-launchd [HH:MM]
 ```
 
-Logs are in `~/Library/Logs/brain-kit/`. To re-run tonight's job now: `scripts/nightly.sh --force`.
+Logs are in `~/Library/Logs/smoothbrain/`. To re-run tonight's job now: `scripts/nightly.sh --force`.
 
 ## Limits
 

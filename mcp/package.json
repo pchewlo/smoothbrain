@@ -1,9 +1,9 @@
 {
-  "name": "brain-kit-mcp",
+  "name": "smoothbrain-mcp",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Local MCP server over a brain-kit data folder: overview, search, zoom, read, save",
+  "description": "Local MCP server over a smoothbrain data folder: overview, search, zoom, read, save",
   "main": "server.mjs",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.32.1",
